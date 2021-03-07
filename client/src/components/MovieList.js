@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Fade from 'react-reveal/Fade';
 
 export default class MovieList extends Component {
     render() {
         return (
             <div>
+                <Fade bottom cascade>
                 <ul className="movies">
                     {this.props.moviesList.map((movie) => (
                         <li key={movie._id}>
@@ -25,6 +27,7 @@ export default class MovieList extends Component {
                         </li>
                     ))}
                         </ul>
+                        </Fade>
             </div>
         )
     }
