@@ -5,7 +5,7 @@ import { logoutUser } from "../actions/authActions";
 import { Link} from 'react-router-dom'
 import '../App.css';
 import logo from '../icinema.png'
-import  styled  from "styled-components";
+import styled  from "styled-components";
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -16,7 +16,7 @@ render() {
     const { user } = this.props.auth;
 return (
       <Container style={{ height: "75vh" }} className="container1">
-         <img src={logo} />
+         <img src={logo} /> 
          
          <Link className="signIn-btn" onClick={this.onLogoutClick}>Logout</Link>
         <div className="row">

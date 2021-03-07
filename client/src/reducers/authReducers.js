@@ -14,12 +14,12 @@ import {
         return {
           ...state,
           isAuthenticated: !isEmpty(action.payload),
-          user: action.payload
+          user: action.payload,
         };
       case USER_LOADING:
         return {
           ...state,
-          loading: true
+          loading: true,
         };
       default:
         return state;

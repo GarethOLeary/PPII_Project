@@ -23,6 +23,7 @@ export class Home extends React.Component{
            <SubTitle> Book Tickets Online now!</SubTitle>
            
            <Link className="signUp-btn" to="/register">Get started</Link>
+           <Link to="/movies">Movies</Link>
         
          
        </div>
