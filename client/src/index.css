@@ -8,7 +8,6 @@ html{
 body {
   height: 100vh;
   margin: 0;
-  font-size: 1.6rem;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -118,4 +117,24 @@ header a {
 }
 .movie-category div{
   font-size: 2rem;
+}
+
+/* movie details */
+
+.movie-details-description img{
+  max-height: 100vh;
+  max-width: 46rem;
+  margin: 0 auto;
+}
+.movie-details-description{
+  flex: 1 1;
+  margin: 1rem;
+  font-size: 1.3rem;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+}
+.close-modal{
+  position: absolute;
+  right: 1rem;
+  top: 2.5rem;
+  z-index: 1000;
 }
