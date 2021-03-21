@@ -25,7 +25,7 @@ code {
   grid-template-areas: "header" 
   "main"
   "footer";
-  grid-template-rows: 5rem 1fr 5rem;
+  grid-template-rows: 6rem 1fr 5rem;
   grid-template-columns: 1fr;
   height: 100%;
 }
@@ -37,6 +37,15 @@ a:hover{
 }
 main {
   grid-area: main;
+}
+footer {
+  grid-area: footer;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  background-color:  #203040;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 header{
   grid-area: header;
@@ -62,7 +71,9 @@ header a {
 .main{
   flex:  3 60rem;
 } 
-
+.sidebar{
+  flex: 1 20rem;
+}
 /* movies */
 
 .movies{
@@ -137,4 +148,54 @@ header a {
   right: 1rem;
   top: 2.5rem;
   z-index: 1000;
+}
+
+/* cart */
+.movie-cart-right{
+  text-align: right;
+  font-size: 2.0rem;
+}
+
+/* Index.css */
+
+.cart{
+  padding: 1rem;
+  margin: 1rem;
+  display: flex;
+}
+.cart-header{
+  border-bottom: 0.1rem #c0c0c0 solid;
+}
+.cart-items{
+  padding: 0;
+  width: 100%;
+  list-style-type: none;
+}
+.cart-items img{
+  width: 10rem;
+}
+.cart.cart-items li{
+  display: flex;
+}
+.cart-items li div{
+  padding: 0.5rem;
+}
+.cart-items li div:last-child{
+  flex: 1;
+}
+.right{
+  text-align: right;
+}
+.total{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.total > div{
+  font-size: 2rem;
+}
+.total > div,
+.total > button {
+  flex: 1;
 }

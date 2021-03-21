@@ -28,9 +28,11 @@ return (
               
             </h4>
            
-           
           </div>
         </div>
+        <div className="content">
+           <Link to="/movies">Movies</Link>
+           </div>
       </Container>
     );
   }

@@ -47,7 +47,6 @@ export default class MovieList extends Component {
                                     <div className="movie-description">
                                         {movie.description}
                                     </div>
-                                    <button className="button primary">Book</button>
                                 </div>
                             </li>
                         ))}
@@ -76,7 +75,7 @@ export default class MovieList extends Component {
                                     </p>
                                 </div>
                             </div>
-                            <button className="button primary">Book</button>
+                            <button onClick={()=> this.props.addToCart(movie)} className="button primary">Book</button>
                         </Zoom>
                         </Modal>
                     )
