@@ -6,6 +6,10 @@ import { Link} from 'react-router-dom'
 import '../App.css';
 import logo from '../icinema.png'
 import styled  from "styled-components";
+import { NavLink } from 'react-router-dom'
+
+//importing navbar that allows the navbar to work and be displayed 
+import { Navbar, Nav } from 'react-bootstrap';
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -15,25 +19,35 @@ class Dashboard extends Component {
 render() {
     const { user } = this.props.auth;
 return (
+
+<div>
+  <Navbar bg="dark" variant="dark">
+            <Navbar.Brand href="/"><img height="70" width="70" src={logo} /></Navbar.Brand>
+            
+            <Nav className="mr-auto">
+                <Navbar.Brand href="/movies">Movies</Navbar.Brand>
+            </Nav>
+            <Nav>
+            <b>Hey there,</b> {user.name.split(" ")[0]}
+            </Nav>
+            <Nav>
+            <Link className="signIn-btn" onClick={this.onLogoutClick}>Logout</Link>
+            </Nav>
+          </Navbar>
+
       <Container style={{ height: "75vh" }} className="container1">
-         <img src={logo} /> 
          
-         <Link className="signIn-btn" onClick={this.onLogoutClick}>Logout</Link>
+         
         <div className="row">
         
           <div className="topcorner">
             
-            <h4>
-              <b>Hey there,</b> {user.name.split(" ")[0]}
-              
-            </h4>
+           
            
           </div>
         </div>
-        <div className="content">
-           <Link to="/movies">Movies</Link>
-           </div>
       </Container>
+      </div>
     );
   }
 }

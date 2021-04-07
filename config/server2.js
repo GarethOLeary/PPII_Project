@@ -4,8 +4,6 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const users = require("./routes/api/users");
 const app = express();
-import productRouter from './routes/productRouter.js';
-
 // Bodyparser middleware
 app.use(
   bodyParser.urlencoded({
@@ -23,10 +21,6 @@ mongoose
   )
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
-
-// movies
-app.use('/api/movies', productRouter);
-
 // Passport middleware
 app.use(passport.initialize());
 // Passport config

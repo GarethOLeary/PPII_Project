@@ -1,34 +1,72 @@
 import React from 'react';
-import {NavLink, Link} from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import '../App.css';
 import logo from '../icinema.png'
-import  styled  from "styled-components";
+import styled from "styled-components";
 
+//importing navbar that allows the navbar to work and be displayed 
+import { Navbar, Nav } from 'react-bootstrap';
 
-export class Home extends React.Component{
-    
-    render(){
-       
-                return(
-                    
-            <Container className="container">
+//importing Carousel to show images that move on screen 
+import Carousel from 'react-bootstrap/Carousel'
+
+export class Home extends React.Component {
+
+    render() {
+
+        return (
+            
+            <div>
                 
-            <div className="top">
-            <img src={logo} />
-         <NavLink className="signIn-btn" to="/login">Sign In </NavLink>
-       </div>
-     
-       <div className="content">
-           <Title>Number one place to come see your favourite movie</Title>
-           <SubTitle> Book Tickets Online now!</SubTitle>
-           
-           <Link className="signUp-btn" to="/register">Get started</Link>
-        
-         
-       </div>
-       </Container>
+            <Navbar bg="dark" variant="dark">
+            <Navbar.Brand href="/"><img height="70" width="70" src={logo} /></Navbar.Brand>
+            
+            <Nav className="mr-auto">
+                <Navbar.Brand href="/movies">Movies</Navbar.Brand>
+            </Nav>
+            <Nav>
+                <NavLink className="signIn-btn" to="/login">Sign In </NavLink>
+            </Nav>
+          </Navbar>
+
+
+
+            <Container className="container">
+
+                <div className="top">
+                <Carousel>
+          <Carousel.Item>
+            <img
+              className="d-block w-100 h-50"
+              src="images/payBack.jpg"
+              alt="Second slide"
+            />
+          </Carousel.Item>
+
+          <Carousel.Item>
+            <img
+              className="d-block w-100 h-50"
+              src="images/vanImg.jpg"
+              alt="Second slide"
+            />
+          </Carousel.Item>
+        </Carousel>
               
-                );
+                </div>
+
+                <div className="content">
+
+
+                    <Title>Number one place to come see your favourite movie</Title>
+                    <SubTitle> Book Tickets Online now!</SubTitle>
+
+                    <Link className="signUp-btn" to="/register">Get started</Link>
+
+
+                </div>
+            </Container>
+            </div>
+        );
     }
 }
 
@@ -95,7 +133,7 @@ const Container = styled.div`
 }
 
 `;
- 
+
 // Main Title
 const Title = styled.h1`
 margin: 0 0 1.2rem;

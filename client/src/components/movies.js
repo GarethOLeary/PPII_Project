@@ -1,5 +1,5 @@
 import React from 'react';
-import data from "../data.json";
+import data from "../../../data";
 import { Cart } from './cart';
 import MovieList from './MovieList';
 
@@ -8,9 +8,13 @@ export class Movies extends React.Component {
         super();
         this.state = {
             moviesList: data.moviesList,
-            cartItems: [],
+            cartItems: localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")):[],
             sort: "",
         }
+    }
+
+    createOrder = (order) => {
+        alert("Need to save order for " + order.name);
     }
 
     removeFromCart = (movie) => {
@@ -21,6 +25,7 @@ export class Movies extends React.Component {
         this.setState({
             cartItems: cartItems.filter((x) => x._id !== movie._id),
         });
+        localStorage.setItem("cartItems", JSON.stringify(cartItems.filter((x) => x._id !== movie._id)));
     };
 
     // create addToCart function
@@ -45,6 +50,7 @@ export class Movies extends React.Component {
         }
         // update the state
         this.setState({cartItems});
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
     };
 
     render() {
@@ -62,7 +68,10 @@ export class Movies extends React.Component {
                             <MovieList moviesList={this.state.moviesList} addToCart={this.addToCart}></MovieList>
                         </div>
                         <div className="sidebar">
-                            <Cart cartItems={this.state.cartItems} removeFromCart={this.removeFromCart} />
+                            <Cart 
+                            cartItems={this.state.cartItems} 
+                            removeFromCart={this.removeFromCart} 
+                            createOrder={this.createOrder}/>
                         </div>
                     </div>
                 </main>
