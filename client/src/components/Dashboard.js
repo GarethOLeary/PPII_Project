@@ -2,41 +2,50 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
-import { Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import '../App.css';
 import logo from '../icinema.png'
-import styled  from "styled-components";
+import styled from "styled-components";
+
+import MovieDetails from './movieDetails';
+
+import { Navbar, Nav } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom'
 
 class Dashboard extends Component {
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
   };
-render() {
+
+  render() {
     const { user } = this.props.auth;
-return (
-      <Container style={{ height: "75vh" }} className="container1">
-         <img src={logo} /> 
-         
-         <Link className="signIn-btn" onClick={this.onLogoutClick}>Logout</Link>
-        <div className="row">
-        
-          <div className="topcorner">
-            
-            <h4>
-              <b>Hey there,</b> {user.name.split(" ")[0]}
-              
-            </h4>
-           
-          </div>
+
+    return (
+
+      <div>
+        <Navbar className="nav-header" bg="dark" variant="dark">
+          <Nav.Link href="/">iMovies</Nav.Link>
+          <Nav className="mr-auto">
+            <Nav.Link href="/popularMovies">Popular</Nav.Link>
+            <Nav.Link href="/upcomingMovies">Upcoming</Nav.Link>
+          </Nav>
+          <Nav>
+            <b>Hey there,</b> {user.name.split(" ")[0]}
+          </Nav>
+          <Nav>
+            <Link className="signIn-btn" onClick={this.onLogoutClick}>Logout</Link>
+          </Nav>
+        </Navbar>
+        <div>
+          <MovieDetails></MovieDetails>
         </div>
-        <div className="content">
-           <Link to="/movies">Movies</Link>
-           </div>
-      </Container>
+      </div>
+
     );
   }
 }
+
 Dashboard.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
@@ -48,9 +57,6 @@ export default connect(
   mapStateToProps,
   { logoutUser }
 )(Dashboard);
-
-
-
 
 const Container = styled.div`
 .signIn-btn{
@@ -92,4 +98,3 @@ const Container = styled.div`
 }
 
 `;
-            

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Home } from './components/home';
+import Home from './components/home';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Register from "./components/Register";
 import Login from "./components/Login";
 import { Provider } from "react-redux";
@@ -13,7 +13,11 @@ import { setCurrentUser, logoutUser } from "./actions/authActions";
 import PrivateRoute from "./components/PrivateRoute";
 import Dashboard from "./components/Dashboard";
 import { Movies } from './components/movies';
-import { Cart } from './components/cart';
+import UpcomingMovies from './components/upcomingMovies';
+import PopularMovies from './components/popularMovies';
+
+import { Navbar, Nav } from 'react-bootstrap';
+import { NavLink, Link } from 'react-router-dom'
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -24,7 +28,7 @@ if (localStorage.jwtToken) {
   const decoded = jwt_decode(token);
   // Set user and isAuthenticated
   store.dispatch(setCurrentUser(decoded));
-// Check for expired token
+  // Check for expired token
   const currentTime = Date.now() / 1000; // to get in milliseconds
   if (decoded.exp < currentTime) {
     // Logout user
@@ -35,25 +39,26 @@ if (localStorage.jwtToken) {
 }
 
 class App extends Component {
-  render(){
-  return (
-    <Provider store={store}>
-    <Router>
-    <div className="App">
-      
-        <Switch>
-          <Route path='/' component={Home} exact/>
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/movies" component={Movies} />
-          <Route exact path="/cart" component={Cart} />
-          <PrivateRoute exact path="/dashboard" component={Dashboard} />
-        </Switch>
-    </div>
-    </Router>
-    </Provider>
-  );
-}
+  render() {
+    return (
+      <Provider store={store}>
+        <Router>
+          <div className="App">
+
+            <Switch>
+              <Route path='/' component={Home} exact />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/movies" component={Movies} />
+              <Route exact path="/upcomingMovies" component={UpcomingMovies} />
+              <Route exact path="/popularMovies" component={PopularMovies} />
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            </Switch>
+          </div>
+        </Router>
+      </Provider>
+    );
+  }
 }
 
 export default App;

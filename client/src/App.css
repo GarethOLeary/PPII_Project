@@ -28,8 +28,9 @@ a{
   position: fixed;
   background-size: cover;
   background-position: center;
-  background: radial-gradient(rgba(0,0,0,0), rgba(0,0,0,7)),
-   url(./movie3.png) ;
+  background-color: black;
+  /*background: radial-gradient(rgba(0,0,0,0), rgba(0,0,0,7)),
+   url(./movie3.png) ;*/
 }
 
 .container::after {
@@ -52,8 +53,9 @@ a{
   color: white;
   background-size: cover;
   background-position: center;
-  background: radial-gradient(rgba(0,0,0,0), rgba(0,0,0,7)),
-   url(./movie3.png) ;
+  background-color: black;
+  /* background: radial-gradient(rgba(0,0,0,0), rgba(0,0,0,7)),
+   url(./movie3.png) ;*/
 }
 
 form {
@@ -62,5 +64,16 @@ form {
   background: -webkit-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
     background: -moz-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
     background: linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+}
+
+.nav-header {
+  font-size: 200%;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.nav-main {
+  font-size: 80%;
+  align-items: center;
 }
 
