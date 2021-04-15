@@ -4,6 +4,7 @@ import '../App.css';
 //import logo from '../icinema.png'
 //import styled from "styled-components";
 import Movie from "./Movie"
+
 import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink, Link } from 'react-router-dom'
 import { get } from "mongoose";
@@ -26,7 +27,7 @@ const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=12a3069539
 // http://image.tmdb.org/t/p/w780/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg
 
 
-class UpcomingMovies extends React.Component {
+class TopRatedMovies extends React.Component {
     state = {
         movies: [],
         loading: false,
@@ -42,7 +43,7 @@ class UpcomingMovies extends React.Component {
             this.setState({...state});
         } else {
             this.setState({loading: true });
-            const endpoint = `${API_URL2}movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`;
+            const endpoint = `${API_URL2}movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`;
             this.fetchItems(endpoint);
         }
     }
@@ -54,7 +55,7 @@ class UpcomingMovies extends React.Component {
         this.setState({loading: true});
 
         if(this.state.searchTerm === ''){
-            endpoint = `${API_URL2}movie/upcoming?api_key=${API_KEY}&language=en-US&page=${this.state.currentPage + 1}`;
+            endpoint = `${API_URL2}movie/top_rated?api_key=${API_KEY}&language=en-US&page=${this.state.currentPage + 1}`;
         } else {
             endpoint = `${API_URL2}search/movie?api_key=${API_KEY}&language=en-US&query=${this.state.searchTerm}&page=${this.state.currentPage + 1}`;
         }
@@ -91,7 +92,7 @@ class UpcomingMovies extends React.Component {
             </div>
              <div className="rmdb-home-grid">
                 <div 
-                    header={this.state.searchTerm ? 'Search result' : 'upcoming Movies'} 
+                    header={this.state.searchTerm ? 'Search result' : 'top_rated Movies'} 
                     loading={this.state.loading} >
                     {this.state.movies.map((element, i) => {
                         return <Movie 
@@ -116,4 +117,4 @@ class UpcomingMovies extends React.Component {
 
 }
 
-export default UpcomingMovies;
+export default TopRatedMovies;

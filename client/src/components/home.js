@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-//import { NavLink, Link } from 'react-router-dom'
 import '../App.css';
-//import logo from '../icinema.png'
-//import styled from "styled-components";
 import Movie from "./Movie"
 import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink, Link } from 'react-router-dom'
@@ -11,12 +8,9 @@ import LoadMoreBtn from './LoadMoreBtn'
 import Spinner from './Spinner'
 
 
-const POSTER_SIZE = 'w500'
-const IMAGE_BASE_URL ='http://image.tmdb.org/t/p/';
+
 
 const API_URL2 = 'https://api.themoviedb.org/3/';
-//const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=12a3069539c26ded272cb55534169534&page=1';
-const API_URL = 'https://api.themoviedb.org/3/movie/upcoming?api_key=12a3069539c26ded272cb55534169534';
 const API_KEY = '12a3069539c26ded272cb55534169534';
 const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=12a3069539c26ded272cb55534169534&query=';
 
