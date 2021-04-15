@@ -15,8 +15,8 @@ import Dashboard from "./components/Dashboard";
 import { Movies } from './components/movies';
 import UpcomingMovies from './components/upcomingMovies';
 import PopularMovies from './components/popularMovies';
-
-import { Navbar, Nav } from 'react-bootstrap';
+import Navbar from './components/Navbar'
+//import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink, Link } from 'react-router-dom'
 
 // Check for token to keep user logged in
@@ -44,7 +44,7 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
-
+<Navbar/>
             <Switch>
               <Route path='/' component={Home} exact />
               <Route exact path="/register" component={Register} />

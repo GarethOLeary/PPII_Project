@@ -57,18 +57,7 @@ function UpcomingMovies() {
     return <div>
 
         <div>
-            <Navbar className="nav-header" bg="dark" variant="dark">
-                <Nav.Link href="/">iMovies</Nav.Link>
-                <Nav className="mr-auto">
-                    <Nav.Link href="/popularMovies">Popular</Nav.Link>
-                    <Nav.Link href="/upcomingMovies">Upcoming</Nav.Link>
-                </Nav>
-                <Nav>
-                    <form onSubmit={handleOnSubmit}>
-                        <input className="search" type="text" placeholder="Search..." value={searchTerm} onChange={handleOnChange}></input>
-                    </form>
-                </Nav>
-            </Navbar>
+            
         </div>
 
         {movies.length > 0 &&

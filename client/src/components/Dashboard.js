@@ -24,19 +24,7 @@ class Dashboard extends Component {
     return (
 
       <div>
-        <Navbar className="nav-header" bg="dark" variant="dark">
-          <Nav.Link href="/">iMovies</Nav.Link>
-          <Nav className="mr-auto">
-            <Nav.Link href="/popularMovies">Popular</Nav.Link>
-            <Nav.Link href="/upcomingMovies">Upcoming</Nav.Link>
-          </Nav>
-          <Nav>
-            <b>Hey there,</b> {user.name.split(" ")[0]}
-          </Nav>
-          <Nav>
-            <Link className="signIn-btn" onClick={this.onLogoutClick}>Logout</Link>
-          </Nav>
-        </Navbar>
+       
         <div>
           <MovieDetails></MovieDetails>
         </div>

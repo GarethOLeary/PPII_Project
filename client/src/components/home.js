@@ -32,14 +32,7 @@ function MovieDetails() {
 
     return <div>
         <div>
-            <Navbar className="nav-header" bg="dark" variant="dark">
-                <Nav.Link href="/">iMovies</Nav.Link>
-                <Nav className="mr-auto">
-                </Nav>
-                <Nav>
-                    <NavLink className="signIn-btn" to="/login">Sign In </NavLink>
-                </Nav>
-            </Navbar>
+            
         </div>
 
         {movies.length > 0 &&
