@@ -10,9 +10,6 @@ import store from "./store";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
-import PrivateRoute from "./components/PrivateRoute";
-import Dashboard from "./components/Dashboard";
-import { Movies } from './components/movies';
 import UpcomingMovies from './components/upcomingMovies';
 import PopularMovies from './components/popularMovies';
 import Navbar from './components/Navbar'
@@ -49,10 +46,8 @@ class App extends Component {
               <Route path='/' component={Home} exact />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
-              <Route exact path="/movies" component={Movies} />
               <Route exact path="/upcomingMovies" component={UpcomingMovies} />
               <Route exact path="/popularMovies" component={PopularMovies} />
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
             </Switch>
           </div>
         </Router>

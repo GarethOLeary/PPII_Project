@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../actions/authActions";
 import classnames from "classnames";
-import logo from '../icinema.png'
+
 class Login extends Component {
   constructor() {
     super();
@@ -17,13 +17,13 @@ class Login extends Component {
   componentDidMount() {
     // If logged in and user navigates to Login page, should redirect them to dashboard
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+      this.props.history.push("/");
     }
   }
   
 componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/dashboard"); // push user to dashboard when they login
+      this.props.history.push("/"); // push user to dashboard when they login
     }
 if (nextProps.errors) {
       this.setState({
@@ -46,7 +46,7 @@ render() {
     const { errors } = this.state;
 return (
       <div className="container1">
-        <img src={logo} />
+    
         <div style={{ marginTop: "4rem" }} className="row">
           <div className="col s8 offset-s2">
             <Link to="/home" className="btn-flat waves-effect white-text">
