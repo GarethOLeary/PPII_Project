@@ -46,7 +46,13 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logoutUser }) => {
         <Link to="/topRatedMovies">
           Top Rated
         </Link>
-        </li><li>
+        </li>
+        <li>
+        <Link to="/popularMovies">
+          Popular
+        </Link>
+        </li>
+        <li>
         <Link to="/upcomingMovies">
           Upcoming
         </Link>

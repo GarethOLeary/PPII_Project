@@ -12,6 +12,7 @@ import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import UpcomingMovies from './components/upcomingMovies';
 import TopRatedMovies from './components/topRatedMovies';
+import PopularMovies from './components/popularMovies';
 import Navbar from './components/Navbar'
 //import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink, Link } from 'react-router-dom'
@@ -48,6 +49,7 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/upcomingMovies" component={UpcomingMovies} />
+              <Route exact path="/popularMovies" component={PopularMovies} />
               <Route exact path="/topRatedMovies" component={TopRatedMovies} />
             </Switch>
           </div>
