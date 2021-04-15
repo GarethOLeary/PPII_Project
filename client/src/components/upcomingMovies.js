@@ -4,6 +4,7 @@ import '../App.css';
 //import logo from '../icinema.png'
 //import styled from "styled-components";
 import Movie from "./Movie"
+import Search from "./Search"
 import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink, Link } from 'react-router-dom'
 import { get } from "mongoose";
@@ -47,6 +48,24 @@ class UpcomingMovies extends React.Component {
         }
     }
 
+    searchItems = (searchTerm) => {
+        console.log(searchTerm);
+        
+        let endpoint = '';
+        this.setState({
+            movies: [],
+            loading: true,
+            searchTerm: searchTerm
+        })
+
+        if(searchTerm === ''){
+            endpoint =  `${API_URL2}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+        } else {
+            endpoint = `${API_URL2}search/movie?api_key=${API_KEY}&language=en-US&query=${searchTerm}`;
+        }
+
+        this.fetchItems(endpoint);
+    }
     
 
     loadMoreItems = () => {
@@ -87,7 +106,7 @@ class UpcomingMovies extends React.Component {
     
             <div>
                 
-                
+            <Search callback={this.searchItems} />
             </div>
              <div className="rmdb-home-grid">
                 <div 
