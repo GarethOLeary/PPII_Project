@@ -16,6 +16,7 @@ import Navbar from './components/Navbar'
 //import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink, Link } from 'react-router-dom'
 
+
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
   // Set auth token header auth
