@@ -1,0 +1,7 @@
+.rmdb-movie-info-thumb img{
+    width: 450px;
+  height: 400px;
+  transition: all 0.3s;
+  object-fit: cover;
+  border-radius: 20px;
+}

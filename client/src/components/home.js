@@ -12,7 +12,7 @@ const API_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = '12a3069539c26ded272cb55534169534';
 const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=12a3069539c26ded272cb55534169534&query=';
 
-class Home1 extends React.Component {
+class Home extends React.Component {
     state = {
         movies: [],
         loading: false,
@@ -121,4 +121,4 @@ class Home1 extends React.Component {
 
 }
 
-export default Home1;
+export default Home;

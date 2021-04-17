@@ -7,7 +7,7 @@ const Movie = ({ title, poster_path, overview, movieId,
 
     <div className="movie">
       <a href={`/movie/${movieId}`} >
-        <img src={IMG_API + poster_path} alt={title} />
+        <img src={poster_path ? IMG_API + poster_path : "https://images.unsplash.com/photo-1576788445812-0933cb14461f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzN8fG1vdmllJTIwcGxhY2Vob2xkZXJ8ZW58MHwxfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"} alt={title} />
       </a>
       <div className="movie-info">
         <h3>{title}</h3>

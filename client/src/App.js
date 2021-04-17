@@ -13,6 +13,7 @@ import { setCurrentUser, logoutUser } from "./actions/authActions";
 import UpcomingMovies from './components/upcomingMovies';
 import TopRatedMovies from './components/topRatedMovies';
 import PopularMovies from './components/popularMovies';
+import MovieDetails from './components/movieDetails';
 import Navbar from './components/Navbar'
 //import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink, Link } from 'react-router-dom'
@@ -51,6 +52,7 @@ class App extends Component {
               <Route exact path="/upcomingMovies" component={UpcomingMovies} />
               <Route exact path="/popularMovies" component={PopularMovies} />
               <Route exact path="/topRatedMovies" component={TopRatedMovies} />
+              <Route path="/movie/:movieid" component={MovieDetails} exact />
             </Switch>
           </div>
         </Router>

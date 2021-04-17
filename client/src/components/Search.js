@@ -1,10 +1,15 @@
 import React from 'react';
 import '../App.css';
 
+
+
 class SearchBar extends React.Component {
     state = {
         value: ''
+        
     }
+
+    
 
     timeout = null;
 
@@ -23,7 +28,7 @@ class SearchBar extends React.Component {
         return (
             <div className="rmdb-searchbar">
             <div className="rmdb-searchbar-content">
-            
+        
                 <input 
                     type="text"
                     className="rmdb-searchbar-input"

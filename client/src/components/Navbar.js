@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { logoutUser } from '../actions/authActions';
 import '../App.css';
 
+
 const Navbar = ({ auth: { isAuthenticated, loading, user }, logoutUser }) => {
   const authLinks = (
     <ul>
@@ -25,6 +26,9 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logoutUser }) => {
 
   const guestLinks = (
     <ul>
+      <li>
+        
+      </li>
       <li>
         <Link to="/register">Register</Link>
       </li>
