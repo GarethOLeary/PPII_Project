@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../actions/authActions";
 import classnames from "classnames";
+import axios from 'axios'
 
 class Login extends Component {
   constructor() {
@@ -12,10 +13,27 @@ class Login extends Component {
       email: "",
       password: "",
       errors: {}
+     //posts: []
+      
     };
   }
+
+  /*getBlogPost = () => {
+    axios.get('/api/users/login')
+      .then((response) => {
+        const data = response.data;
+        this.setState({ posts: data });
+        console.log('Data has been received!!');
+        localStorage.setItem('useId', JSON.stringify(this.state));
+      })
+      .catch(() => {
+        alert('Error retrieving data!!!');
+      });
+      }
+*/
   componentDidMount() {
     // If logged in and user navigates to Login page, should redirect them to dashboard
+   //this.getBlogPost();
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/");
     }
@@ -40,6 +58,9 @@ const userData = {
       email: this.state.email,
       password: this.state.password
     };
+
+   
+  
 this.props.loginUser(userData); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
   };
 render() {
@@ -49,7 +70,7 @@ return (
     
         <div style={{ marginTop: "4rem" }} className="row">
           <div className="col s8 offset-s2">
-            <Link to="/home" className="btn-flat waves-effect white-text">
+            <Link to="/" className="btn-flat waves-effect white-text">
               <i className="material-icons left white-text">keyboard_backspace</i> Back to
               home
             </Link>
@@ -134,3 +155,4 @@ export default connect(
   mapStateToProps,
   { loginUser }
 )(Login);
+

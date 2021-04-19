@@ -17,6 +17,7 @@ import MovieDetails from './components/movieDetails';
 import Navbar from './components/Navbar'
 //import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink, Link } from 'react-router-dom'
+import FavoritePage from './components/FavoritePage';
 
 
 // Check for token to keep user logged in
@@ -52,7 +53,8 @@ class App extends Component {
               <Route exact path="/upcomingMovies" component={UpcomingMovies} />
               <Route exact path="/popularMovies" component={PopularMovies} />
               <Route exact path="/topRatedMovies" component={TopRatedMovies} />
-              <Route path="/movie/:movieid" component={MovieDetails} exact />
+              <Route path="/movie/:movieId" component={MovieDetails} exact />
+              <Route exact path="/favorite" component={FavoritePage} />
             </Switch>
           </div>
         </Router>

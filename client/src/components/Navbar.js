@@ -61,6 +61,9 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logoutUser }) => {
           Upcoming
         </Link>
         </li>
+        <li>
+        <a href="/favorite">Favorite</a>
+        </li>
       </ul>
       {!loading && (
         <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>

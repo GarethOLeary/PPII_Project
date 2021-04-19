@@ -46,8 +46,12 @@ const newUser = {
       password: this.state.password,
       password2: this.state.password2
     };
+    
+
 this.props.registerUser(newUser, this.props.history); 
   };
+
+ 
 render() {
   
     const { errors } = this.state;
@@ -166,4 +170,5 @@ export default connect(
   mapStateToProps,
   { registerUser }
 )(withRouter(Register));
+
 

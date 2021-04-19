@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Spinner from './Spinner'
 import Movie2 from './Movie2'
+import Favorite from './Favorite';
 const API_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = '12a3069539c26ded272cb55534169534';
+
 
 class Movie extends Component {
   state = {
@@ -10,16 +12,17 @@ class Movie extends Component {
     actors: null,
     directors: [],
     loading: false
+    
   }
   
   componentDidMount() {
-    if(localStorage.getItem(`${this.props.match.params.movieid}`)) {
-      const state = JSON.parse(localStorage.getItem(`${this.props.match.params.movieid}`));
+    if(localStorage.getItem(`${this.props.match.params.movieId}`)) {
+      const state = JSON.parse(localStorage.getItem(`${this.props.match.params.movieId}`));
       this.setState({...state});
     } else {
       // First fetch the movie ...
       this.setState({ loading: true })
-      const endpoint = `${API_URL}movie/${this.props.match.params.movieid}?api_key=${API_KEY}&language=en-US`;
+      const endpoint = `${API_URL}movie/${this.props.match.params.movieId}?api_key=${API_KEY}&language=en-US`;
       this.fetchItems(endpoint);
     }
     }
@@ -35,7 +38,7 @@ class Movie extends Component {
       } else {
         this.setState({ movie: result }, () => {
           // then fetch actors in the setState callback function
-          const endpoint = `${API_URL}movie/${this.props.match.params.movieid}/credits?api_key=${API_KEY}`;
+          const endpoint = `${API_URL}movie/${this.props.match.params.movieId}/credits?api_key=${API_KEY}`;
           fetch(endpoint)
           .then(result => result.json())
           .then(result => {
@@ -46,7 +49,7 @@ class Movie extends Component {
               directors,
               loading: false
             }, () => {
-              localStorage.setItem(`${this.props.match.params.movieid}`, JSON.stringify(this.state));
+              localStorage.setItem(`${this.props.match.params.movieId}`, JSON.stringify(this.state));
             })
           })
         })
@@ -67,7 +70,10 @@ class Movie extends Component {
         </div>
         : null }
        
-        {this.state.loading ? <Spinner /> : null}        
+        {this.state.loading ? <Spinner /> : null}   
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <Favorite movieInfo={this.state.movie} movieId={this.state.movieId} userFrom={localStorage.getItem('userId')} />
+                </div>     
       </div>
     )
   }
