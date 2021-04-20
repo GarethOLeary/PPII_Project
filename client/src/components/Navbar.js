@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logoutUser } from '../actions/authActions';
 import '../App.css';
+const API_URL = 'https://api.themoviedb.org/3/';
+const API_KEY = '12a3069539c26ded272cb55534169534';
+
+
 
 
 const Navbar = ({ auth: { isAuthenticated, loading, user }, logoutUser }) => {
@@ -24,10 +28,12 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logoutUser }) => {
     </ul>
   );
 
+ 
+
   const guestLinks = (
     <ul>
       <li>
-        
+     
       </li>
       <li>
         <Link to="/register">Register</Link>
@@ -72,6 +78,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logoutUser }) => {
   );
 };
 
+
 Navbar.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
@@ -82,3 +89,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { logoutUser })(Navbar);
+
+
+

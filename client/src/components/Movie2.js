@@ -38,10 +38,10 @@ const Movie2 = (props) => {
                    <p>{props.movie.revenue}</p>
                    <h3>Release Date</h3>
                    <p>{props.movie.release_date}</p>
-                   {props.directors.length > 1 ? <h3>Directors</h3> : <h3>Director</h3>}
+               {/*}    {props.directors.length > 1 ? <h3>Directors</h3> : <h3>Director</h3>}
                    {props.directors.map((element, i) => {
                        return <p key={i} className="rmdb-director">{element.name}</p>
-                   })}
+                   })}*/}
                </div>
            </div>
         </div>

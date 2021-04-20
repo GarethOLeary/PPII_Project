@@ -8,9 +8,9 @@ function Favorite(props) {
 
     const movieId = props.movieId
     const userFrom = props.userFrom
-    const movieTitle = props.title
-    const moviePost = props.backdrop_path
-    const movieRunTime = props.runtime
+    const movieTitle = props.movieInfo.title
+    const moviePost = props.movieInfo.poster_path
+    const movieRunTime = props.movieInfo.runtime
 
     const [FavoriteNumber, setFavoriteNumber] = useState(0)
     const [Favorited, setFavorited] = useState(false)
@@ -35,6 +35,7 @@ function Favorite(props) {
                     if (response.data.success) {
                         setFavoriteNumber(FavoriteNumber - 1)
                         setFavorited(!Favorited)
+                        
                     } else {
                         alert('Failed to Remove From Favorite')
                     }

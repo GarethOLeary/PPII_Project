@@ -1,82 +1,130 @@
-import React, { Component } from 'react';
-import Spinner from './Spinner'
+
 import Movie2 from './Movie2'
+import React, { useEffect, useState } from 'react'
+import { List, Avatar, Row, Col, Button } from 'antd';
+import axios from 'axios';
+
+import MovieInfo from './MovieInfo';
 import Favorite from './Favorite';
-const API_URL = 'https://api.themoviedb.org/3/';
-const API_KEY = '12a3069539c26ded272cb55534169534';
+export const USER_SERVER = '/api/users';
 
 
-class Movie extends Component {
-  state = {
-    movie: null,
-    actors: null,
-    directors: [],
-    loading: false
-    
-  }
-  
-  componentDidMount() {
-    if(localStorage.getItem(`${this.props.match.params.movieId}`)) {
-      const state = JSON.parse(localStorage.getItem(`${this.props.match.params.movieId}`));
-      this.setState({...state});
-    } else {
-      // First fetch the movie ...
-      this.setState({ loading: true })
-      const endpoint = `${API_URL}movie/${this.props.match.params.movieId}?api_key=${API_KEY}&language=en-US`;
-      this.fetchItems(endpoint);
+
+export const API_URL = 'https://api.themoviedb.org/3/';
+export const API_KEY = '844dba0bfd8f3a4f3799f6130ef9e335';
+
+
+export const IMAGE_BASE_URL ='http://image.tmdb.org/t/p/';
+
+//Sizes: w300, w780, w1280, original
+export const BACKDROP_SIZE = 'w1280'
+export const IMAGE_SIZE = 'w1280'
+
+// w92, w154, w185, w342, w500, w780, original
+export const POSTER_SIZE = 'w500'
+function MovieDetailPage(props) {
+
+    const movieId = props.match.params.movieId
+    const [Movie, setMovie] = useState([])
+    const [Casts, setCasts] = useState([])
+    const [CommentLists, setCommentLists] = useState([])
+    const [LoadingForMovie, setLoadingForMovie] = useState(true)
+    const [LoadingForCasts, setLoadingForCasts] = useState(true)
+    const [ActorToggle, setActorToggle] = useState(false)
+    const movieVariable = {
+        movieId: movieId
     }
-    }
-    
-  fetchItems = (endpoint) => {
-    fetch(endpoint)
-    .then(result => result.json())
-    .then(result => {
-        console.log(result);
-        
-      if (result.status_code) {
-        this.setState({ loading: false });
-      } else {
-        this.setState({ movie: result }, () => {
-          // then fetch actors in the setState callback function
-          const endpoint = `${API_URL}movie/${this.props.match.params.movieId}/credits?api_key=${API_KEY}`;
-          fetch(endpoint)
-          .then(result => result.json())
-          .then(result => {
-            const directors = result.crew.filter( (member) => member.job === "Director");
 
-            this.setState({
-              actors: result.cast,
-              directors,
-              loading: false
-            }, () => {
-              localStorage.setItem(`${this.props.match.params.movieId}`, JSON.stringify(this.state));
+    useEffect(() => {
+
+        let endpointForMovieInfo = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`;
+        fetchDetailInfo(endpointForMovieInfo)
+
+        axios.post('/api/comment/getComments', movieVariable)
+            .then(response => {
+                console.log(response)
+                if (response.data.success) {
+                    console.log('response.data.comments', response.data.comments)
+                    setCommentLists(response.data.comments)
+                } else {
+                    alert('Failed to get comments Info')
+                }
             })
-          })
-        })
-      }
-    })
-    .catch(error => console.error('Error:', error))
-  }
 
-  render() {
+    }, [])
+
+    const toggleActorView = () => {
+        setActorToggle(!ActorToggle)
+    }
+
+    const fetchDetailInfo = (endpoint) => {
+
+        fetch(endpoint)
+            .then(result => result.json())
+            .then(result => {
+                console.log(result)
+                setMovie(result)
+                setLoadingForMovie(false)
+
+                let endpointForCasts = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
+                fetch(endpointForCasts)
+                    .then(result => result.json())
+                    .then(result => {
+                        console.log(result)
+                        setCasts(result.cast)
+                    })
+
+                setLoadingForCasts(false)
+            })
+            .catch(error => console.error('Error:', error)
+            )
+    }
+
+    const updateComment = (newComment) => {
+        setCommentLists(CommentLists.concat(newComment))
+    }
+
     return (
-      <div className="rmdb-movie">
-        {this.state.movie ? 
-        
         <div>
-            
-            <Movie2 movie={this.state.movie} directors={this.state.directors} 
-             time={this.state.movie.runtime} budget={this.state.movie.budget} revenue={this.state.movie.revenue} />
+            {/* Header */}
+            {!LoadingForMovie ?
+                <Movie2
+                movie={Movie} 
+                />
+                :
+                <div>loading...</div>
+            }
+
+
+            {/* Body */}
+            <div style={{ width: '85%', margin: '1rem auto' }}>
+
+                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <Favorite movieInfo={Movie} movieId={movieId} userFrom={localStorage.getItem('userId')} />
+                </div>
+
+
+                {/* Movie Info */}
+               {/*} {!LoadingForMovie ?
+                    <MovieInfo movie={Movie} />
+                    :
+                    <div>loading...</div>
+                }
+
+                <br />
+               
+               
+              */}
+              
+
+              
+
+            </div>
+
         </div>
-        : null }
-       
-        {this.state.loading ? <Spinner /> : null}   
-        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <Favorite movieInfo={this.state.movie} movieId={this.state.movieId} userFrom={localStorage.getItem('userId')} />
-                </div>     
-      </div>
     )
-  }
 }
 
-export default Movie;
+export default MovieDetailPage
+
+

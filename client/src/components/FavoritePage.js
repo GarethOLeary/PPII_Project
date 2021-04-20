@@ -1,11 +1,11 @@
-
 import React, { useEffect, useState } from 'react'
 import { Typography, Popover, Button } from 'antd';
 import axios from 'axios';
+import './movie.css';
 import { useSelector } from 'react-redux';
 export const IMAGE_BASE_URL ='http://image.tmdb.org/t/p/';
-// w92, w154, w185, w342, w500, w780, original
 export const POSTER_SIZE = 'w500'
+const IMG_API = "http://image.tmdb.org/t/p/w1280"
 
 const { Title } = Typography;
 
@@ -54,28 +54,30 @@ function FavoritePage() {
     const renderCards = Favorites.map((favorite, index) => {
 
 
-        const content = (
-            <div>
-                {favorite.moviePost ?
-                    <img src={`${IMAGE_BASE_URL}${POSTER_SIZE}${favorite.moviePost}`} />
-                    : "no image"}
-            </div>
-        );
+       
 
-        return <tr key={index}>
+        return <div className="movie" key={index}>
 
-            <Popover content={content} title={`${favorite.movieTitle}`}>
-                <td>{favorite.movieTitle}</td>
-            </Popover>
+            
+               
+                <img src={favorite.moviePost ? IMG_API + favorite.moviePost : "https://images.unsplash.com/photo-1576788445812-0933cb14461f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzN8fG1vdmllJTIwcGxhY2Vob2xkZXJ8ZW58MHwxfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"}  />
+            
+                <div className="movie-info">
+        <h3> {favorite.movieTitle}</h3>
+        <span> {favorite.movieRunTime} mins</span>
+</div>
 
-            <td>{favorite.movieRunTime} mins</td>
-            <td><button onClick={() => onClickDelete(favorite.movieId, favorite.userFrom)}> Remove </button></td>
-        </tr>
+<button className='button-fancy'  onClick={() => onClickDelete(favorite.movieId, favorite.userFrom)}> Remove </button>
+           
+        </div>
+        
+        
+        
     })
 
     return (
-        <div style={{ width: '85%', margin: '3rem auto' }}>
-            <Title level={2} > Favorite Movies By Me </Title>
+        <div style={{ width: '100%', margin: '3rem auto' }}>
+            <Title level={2} > Favorite Movies </Title>
             <hr />
          {/*}   {user.userData && !user.userData.isAuth ?
                 <div style={{ width: '100%', fontSize: '2rem', height: '500px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
@@ -96,7 +98,7 @@ function FavoritePage() {
                         {renderCards}
                     </tbody>
                 </table>
-            }*/}
+            }
              <table>
                     <thead>
                         <tr>
@@ -108,7 +110,11 @@ function FavoritePage() {
                     <tbody>
                         {renderCards}
                     </tbody>
-                </table>
+                </table>*/}
+                
+                   
+                {renderCards}
+              
         </div>
     )
 }

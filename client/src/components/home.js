@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import '../App.css';
 import Movie from "./Movie"
-import { Navbar, Nav } from 'react-bootstrap';
-import { NavLink, Link } from 'react-router-dom'
-import { get } from "mongoose";
+import { Typography } from 'antd';
 import LoadMoreBtn from './LoadMoreBtn'
 import Spinner from './Spinner'
 import Search from "./Search"
-
+const { Title } = Typography;
 const API_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = '12a3069539c26ded272cb55534169534';
 const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=12a3069539c26ded272cb55534169534&query=';
@@ -88,11 +86,12 @@ class Home extends React.Component {
     render() {
         return (
 
-            <div className="rmdb-home">
-
+            <div style={{ width: '100%', margin: '3rem auto' }}className="rmdb-home">
+<Title level={2} > Imovies  </Title>
+            <hr />
                 <div>
-                    <Search callback={this.searchItems} />
-
+                
+                <Search callback={this.searchItems} />
                 </div>
                 <div className="rmdb-home-grid">
                     <div

@@ -8,11 +8,13 @@ import Search from "./Search"
 import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink, Link } from 'react-router-dom'
 import { get } from "mongoose";
+
+import { Typography } from 'antd';
 import LoadMoreBtn from './LoadMoreBtn'
 import Spinner from './Spinner'
 const POSTER_SIZE = 'w500'
 const IMAGE_BASE_URL ='http://image.tmdb.org/t/p/';
-
+const { Title } = Typography;
 //const API_URL2 = 'https://api.themoviedb.org/3/';
 //const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=12a3069539c26ded272cb55534169534&page=1';
 //const API_URL = 'https://api.themoviedb.org/3/movie/popular?api_key=12a3069539c26ded272cb55534169534';
@@ -107,8 +109,9 @@ class PopularMovies extends React.Component {
 
     render() {
         return (
-            <div className="rmdb-home">
-    
+            <div style={{ width: '100%', margin: '3rem auto' }} className="rmdb-home">
+     <Title level={2} > Popular Movies </Title>
+     <hr />
             <div>
             <Search callback={this.searchItems} />
                 

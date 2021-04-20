@@ -24,6 +24,10 @@ class SearchBar extends React.Component {
         }, 500)
     }
 
+    
+
+   
+
     render() {
         return (
             <div className="rmdb-searchbar">
