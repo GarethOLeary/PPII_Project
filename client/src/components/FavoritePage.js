@@ -10,7 +10,7 @@ const IMG_API = "http://image.tmdb.org/t/p/w1280"
 const { Title } = Typography;
 
 function FavoritePage() {
-    const user = useSelector(state => state.user)
+    const user = useSelector(state => state.auth)
 
     const [Favorites, setFavorites] = useState([])
     const [Loading, setLoading] = useState(true)
@@ -76,46 +76,21 @@ function FavoritePage() {
     })
 
     return (
-        <div style={{ width: '100%', margin: '3rem auto' }}>
-            <Title level={2} > Favorite Movies </Title>
-            <hr />
-         {/*}   {user.userData && !user.userData.isAuth ?
-                <div style={{ width: '100%', fontSize: '2rem', height: '500px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                    <p>Please Log in first...</p>
-                    <a href="/login">Go to Login page</a>
-                </div>
-                :
-                !Loading &&
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Movie Title</th>
-                            <th>Movie RunTime</th>
-                            <td>Remove from favorites</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {renderCards}
-                    </tbody>
-                </table>
-            }
-             <table>
-                    <thead>
-                        <tr>
-                            <th>Movie Title</th>
-                            <th>Movie RunTime</th>
-                            <td>Remove from favorites</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {renderCards}
-                    </tbody>
-                </table>*/}
-                
-                   
-                {renderCards}
-              
-        </div>
+        <div style={{ width: '85%', margin: '3rem auto' }}>
+        <Title level={2} > Favorite Movies By Me </Title>
+        <hr />
+        {user.user && !user.isAuthenticated ?
+            <div style={{ width: '100%', fontSize: '2rem', height: '500px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                <p>Please Log in first...</p>
+                <a href="/login">Go to Login page</a>
+            </div>
+            :
+            !Loading &&
+           <div>
+                    {renderCards}
+               </div>
+        }
+    </div>
     )
 }
 

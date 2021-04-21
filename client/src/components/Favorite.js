@@ -4,7 +4,7 @@ import { Button } from 'antd';
 import { useSelector } from 'react-redux';
 
 function Favorite(props) {
-    const user = useSelector(state => state.user)
+    const user = useSelector(state => state.auth)
 
     const movieId = props.movieId
     const userFrom = props.userFrom
@@ -24,9 +24,9 @@ function Favorite(props) {
 
     const onClickFavorite = () => {
 
-      //  if (user.userData && !user.userData.isAuth) {
-      //      return alert('Please Log in first');
-      //  }
+        if (user.user && !user.isAuthenticated) {
+            return alert('Please Log in first');
+        }
 
         if (Favorited) {
             //when we are already subscribed 

@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logoutUser } from '../actions/authActions';
-import '../App.css';
-const API_URL = 'https://api.themoviedb.org/3/';
-const API_KEY = '12a3069539c26ded272cb55534169534';
+
+
 
 
 

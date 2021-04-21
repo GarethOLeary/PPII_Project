@@ -1,8 +1,9 @@
 const jwt = require("jsonwebtoken");
 const keys = require("../config/keys");
-exports.createJWT = (email, userId, duration) => {
+exports.createJWT = (email, name,userId, duration) => {
    const payload = {
       email,
+      name,
       userId,
       duration
    };
