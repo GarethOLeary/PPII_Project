@@ -64,7 +64,7 @@ p{
   font-family: Montserrat, Helvetica, Arial, sans-serif;  
 }
 
-ul{
-  font-size: 1.6rem;
+.box ul{
+  font-size: 1.6em;
   text-decoration: underline;
 }

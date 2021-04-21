@@ -1,5 +1,6 @@
 
 import Movie2 from './Movie2'
+import Comments from './Comments';
 import React, { useEffect, useState } from 'react'
 import { List, Avatar, Row, Col, Button } from 'antd';
 import axios from 'axios';
@@ -8,13 +9,11 @@ import MovieInfo from './MovieInfo';
 import Favorite from './Favorite';
 export const USER_SERVER = '/api/users';
 
-
-
 export const API_URL = 'https://api.themoviedb.org/3/';
 export const API_KEY = '844dba0bfd8f3a4f3799f6130ef9e335';
 
 
-export const IMAGE_BASE_URL ='http://image.tmdb.org/t/p/';
+export const IMAGE_BASE_URL = 'http://image.tmdb.org/t/p/';
 
 //Sizes: w300, w780, w1280, original
 export const BACKDROP_SIZE = 'w1280'
@@ -22,6 +21,7 @@ export const IMAGE_SIZE = 'w1280'
 
 // w92, w154, w185, w342, w500, w780, original
 export const POSTER_SIZE = 'w500'
+
 function MovieDetailPage(props) {
 
     const movieId = props.match.params.movieId
@@ -89,7 +89,7 @@ function MovieDetailPage(props) {
             {/* Header */}
             {!LoadingForMovie ?
                 <Movie2
-                movie={Movie} 
+                    movie={Movie}
                 />
                 :
                 <div>loading...</div>
@@ -105,19 +105,17 @@ function MovieDetailPage(props) {
 
 
                 {/* Movie Info */}
-               {/*} {!LoadingForMovie ?
+                {/*} {!LoadingForMovie ?
                     <MovieInfo movie={Movie} />
                     :
                     <div>loading...</div>
                 }
 
                 <br />
-               
-               
+    
               */}
-              
 
-              
+                <Comments movieTitle={Movie.original_title} CommentLists={CommentLists} postId={movieId} refreshFunction={updateComment} />
 
             </div>
 
