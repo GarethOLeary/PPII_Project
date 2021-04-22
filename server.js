@@ -28,8 +28,13 @@ app.use(passport.initialize());
 require("./config/passport")(passport);
 // Routes
 
+// user
 app.use('/api/users', users);
+// favorite
 app.use('/api/favorite', favorite);
+// comment 
+app.use('/api/comment', require('./routes/api/comment'));
+
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
 

@@ -3,11 +3,13 @@ import { Button, Input } from 'antd';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import './comments.css';
+
 const { TextArea } = Input;
 
 function Comments(props) {
 
-    const auth = useSelector(state => state.auth)
+    //const auth = useSelector(state => state.auth)
+    const user = useSelector(state => state.auth)
 
     //state
     const [Comment, setComment] = useState("")
@@ -19,13 +21,14 @@ function Comments(props) {
     const onSubmit = (e) => {
         e.preventDefault();
 
-        /*if (auth.userId && !auth.userId.isAuth) {
+        //check if user is logged in
+        if (user.user && !user.isAuthenticated) {
             return alert('Please Log in first');
-        }*/
+        }
 
         const variables = {
             content: Comment,
-            writer: auth.user.userId,
+            writer: user.user.userId,
             postId: props.postId
         }
         console.log(variables)
@@ -36,7 +39,7 @@ function Comments(props) {
                     setComment("")
                     props.refreshFunction(response.data.result)
                 } else {
-                    //alert('Failed to save Comment')
+                    setComment("")
                 }
             })
     }
@@ -49,7 +52,6 @@ function Comments(props) {
             {/* Comment Lists */}
             {console.log(props.CommentLists)}
 
-            {/* Comment Input Box */}
             <div>
                 <p>Replies</p>
                 <div className="content">

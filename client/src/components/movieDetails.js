@@ -1,4 +1,3 @@
-
 import Movie2 from './Movie2'
 import Comments from './Comments';
 import React, { useEffect, useState } from 'react'
@@ -23,6 +22,8 @@ export const IMAGE_SIZE = 'w1280'
 export const POSTER_SIZE = 'w500'
 
 function MovieDetailPage(props) {
+    //const postId = props.match.params.postId
+   // const [Comment, setComment] = useState("")
 
     const movieId = props.match.params.movieId
     const [Movie, setMovie] = useState([])
@@ -31,6 +32,8 @@ function MovieDetailPage(props) {
     const [LoadingForMovie, setLoadingForMovie] = useState(true)
     const [LoadingForCasts, setLoadingForCasts] = useState(true)
     const [ActorToggle, setActorToggle] = useState(false)
+
+    //variables
     const movieVariable = {
         movieId: movieId
     }
@@ -40,6 +43,7 @@ function MovieDetailPage(props) {
         let endpointForMovieInfo = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`;
         fetchDetailInfo(endpointForMovieInfo)
 
+        //get comments
         axios.post('/api/comment/getComments', movieVariable)
             .then(response => {
                 console.log(response)
@@ -80,6 +84,7 @@ function MovieDetailPage(props) {
             )
     }
 
+    // update the comment
     const updateComment = (newComment) => {
         setCommentLists(CommentLists.concat(newComment))
     }
@@ -114,7 +119,7 @@ function MovieDetailPage(props) {
                 <br />
     
               */}
-
+                {/* comments */}
                 <Comments movieTitle={Movie.original_title} CommentLists={CommentLists} postId={movieId} refreshFunction={updateComment} />
 
             </div>
