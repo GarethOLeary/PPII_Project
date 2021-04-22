@@ -109,9 +109,8 @@ class PopularMovies extends React.Component {
 
     render() {
         return (
-            <div style={{ width: '100%', margin: '3rem auto' }} className="rmdb-home">
-     <Title level={2} > Popular Movies </Title>
-     <hr />
+            <div  className="rmdb-home">
+    
             <div>
             <Search callback={this.searchItems} />
                 

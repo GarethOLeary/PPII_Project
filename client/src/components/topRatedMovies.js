@@ -110,9 +110,8 @@ class TopRatedMovies extends React.Component {
         return (
         
            
-            <div style={{ width: '100%', margin: '3rem auto' }}className="rmdb-home">
-     <Title level={2} > Top-Rated Movies </Title>
-     <hr />
+            <div className="rmdb-home">
+    
             <div>
             <Search callback={this.searchItems} />
                 
