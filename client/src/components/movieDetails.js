@@ -2,6 +2,7 @@ import Movie2 from './Movie2'
 import Comments from './Comments';
 import React, { useEffect, useState } from 'react'
 import { List, Avatar, Row, Col, Button } from 'antd';
+import LikeDislikes from './LikeDislike';
 import axios from 'axios';
 
 import MovieInfo from './MovieInfo';
@@ -10,7 +11,6 @@ export const USER_SERVER = '/api/users';
 
 export const API_URL = 'https://api.themoviedb.org/3/';
 export const API_KEY = '844dba0bfd8f3a4f3799f6130ef9e335';
-
 
 export const IMAGE_BASE_URL = 'http://image.tmdb.org/t/p/';
 
@@ -22,8 +22,6 @@ export const IMAGE_SIZE = 'w1280'
 export const POSTER_SIZE = 'w500'
 
 function MovieDetailPage(props) {
-    //const postId = props.match.params.postId
-   // const [Comment, setComment] = useState("")
 
     const movieId = props.match.params.movieId
     const [Movie, setMovie] = useState([])
@@ -91,6 +89,7 @@ function MovieDetailPage(props) {
 
     return (
         <div>
+            
             {/* Header */}
             {!LoadingForMovie ?
                 <Movie2
@@ -100,30 +99,27 @@ function MovieDetailPage(props) {
                 <div>loading...</div>
             }
 
-
-            {/* Body */}
+            {/* Main */}
             <div style={{ width: '85%', margin: '1rem auto' }}>
+
+                {/* like/dislikes */}
+
+                <div align style={{ display: 'flex', justifyContent: 'left'}}>
+                    <LikeDislikes video postId={movieId} userId={localStorage.getItem('userId')} />
+                </div>
+
+                {/* favourite */}
 
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <Favorite movieInfo={Movie} movieId={movieId} userFrom={localStorage.getItem('userId')} />
                 </div>
 
-
-                {/* Movie Info */}
-                {/*} {!LoadingForMovie ?
-                    <MovieInfo movie={Movie} />
-                    :
-                    <div>loading...</div>
-                }
-
                 <br />
     
-              */}
                 {/* comments */}
                 <Comments movieTitle={Movie.original_title} CommentLists={CommentLists} postId={movieId} refreshFunction={updateComment} />
 
             </div>
-
         </div>
     )
 }

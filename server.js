@@ -34,6 +34,8 @@ app.use('/api/users', users);
 app.use('/api/favorite', favorite);
 // comment 
 app.use('/api/comment', require('./routes/api/comment'));
+// likes
+app.use('/api/like', require('./routes/api/like'));
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
