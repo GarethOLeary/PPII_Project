@@ -3,6 +3,7 @@ import { Button, Input } from 'antd';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import './comments.css';
+import DisplayComment from './DisplayComment';
 
 const { TextArea } = Input;
 
@@ -51,6 +52,12 @@ function Comments(props) {
 
             {/* Comment Lists */}
             {console.log(props.CommentLists)}
+
+            {props.CommentLists && props.CommentLists.map((comment, index) => (
+                    <React.Fragment>
+                        <DisplayComment comment={comment} postId={props.postId} refreshFunction={props.refreshFunction} />
+                    </React.Fragment>
+            ))} 
 
             <div>
                 <p>Replies</p>
