@@ -5,7 +5,7 @@ const { TextArea } = Input;
 function DisplayComment(props) {
 
     const actionOnClick = [
-        <span onClick><hr/></span>
+        <span onClick><hr style={{background: 'grey'}}/></span>
     ]
 
     return (

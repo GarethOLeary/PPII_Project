@@ -68,13 +68,13 @@ render() {
 return (
       <div className="container1">
     
-        <div style={{ marginTop: "4rem" }} className="row">
+        <div style={{ marginTop: "4rem" }} className="main-login">
           <div className="col s8 offset-s2">
             <Link to="/" className="btn-flat waves-effect white-text">
               <i className="material-icons left white-text">keyboard_backspace</i> Back to
               home
-            </Link>
-            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+            </Link >
+            <div className="col s12 white-text" style={{ paddingLeft: "11.250px" }}>
               <h4>
                 <b>Login</b> below
               </h4>
@@ -82,6 +82,7 @@ return (
                 Don't have an account? <Link to="/register" style={{ color: '#FFFE33' }}>Register</Link>
               </p>
             </div>
+            <br />
             <form noValidate onSubmit={this.onSubmit}>
               <div className="input-field col s12">
                 <input
@@ -102,7 +103,7 @@ return (
                   {errors.emailnotfound}
                 </span>
               </div>
-              <div className="input-field col s12 white-text">
+              <div className="input-field col s12 black-text">
                 <input
                 
                   onChange={this.onChange}

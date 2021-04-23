@@ -23,9 +23,9 @@ function Comments(props) {
         e.preventDefault();
 
         //check if user is logged in
-        if (user.user && !user.isAuthenticated) {
-            return alert('Please Log in first');
-        }
+        //if (user.user && !user.isAuthenticated) {
+        //    return alert('Please Log in first');
+        //}
 
         const variables = {
             content: Comment,
@@ -47,30 +47,40 @@ function Comments(props) {
 
     return (
         <div>
-            <div className="text"> Share your opinions about {props.movieTitle} </div>
+            <div className="text">Share your opinions about {props.movieTitle}</div>
             <br />
+            <div className="main-content">
+                <br />
 
-            {/* Comment Lists */}
-            {console.log(props.CommentLists)}
 
-            {props.CommentLists && props.CommentLists.map((comment, index) => (
-                    <React.Fragment>
-                        <DisplayComment comment={comment} postId={props.postId} refreshFunction={props.refreshFunction} />
-                    </React.Fragment>
-            ))} 
 
-            <div>
-                <p>Replies</p>
-                <div className="content">
-                    <input className="input" onChange={handleChange} value={Comment} placeholder="write some comments" />
+                <div>
                     <br />
+                    <p>Replies</p>
+                    <hr style={{ background: 'white' }} />
+                    <br />
+                    {/* Comment Lists */}
+                    {console.log(props.CommentLists)}
+
+                    {props.CommentLists && props.CommentLists.map((comment, index) => (
+                        <React.Fragment>
+                            <DisplayComment comment={comment} postId={props.postId} refreshFunction={props.refreshFunction} />
+                        </React.Fragment>
+                    ))}
+                    <br />
+                    <div className="content">
+                        <input className="input" onChange={handleChange} value={Comment} placeholder="write some comments" />
+                        <br />
+                    </div>
+                    <br />
+                    <button className="button" onClick={onSubmit}>Submit</button>
                 </div>
-                <button className="button" onClick={onSubmit}>Submit</button>
             </div>
-            <br />
-            <br />
+            <br /><br />
         </div>
+
     );
 }
 
 export default Comments
+

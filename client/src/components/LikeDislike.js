@@ -97,7 +97,7 @@ function LikeDislikes(props) {
 
     const onDisLike = () => {
 
-        if (user.userData && !user.userData.isAuth) {
+        if (user.user && !user.isAuthenticated) {
             return alert('Please Log in first');
         }
 

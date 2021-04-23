@@ -8,14 +8,10 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logoutUser }) => {
   const authLinks = (
     <ul>
       <li>
-        
-     
           <span className="hide-sm">Welcome {user && user.name}</span>
-        
       </li>
       <li>
         <a onClick={logoutUser} href="#!">
-        
           <span className="hide-sm">Logout</span>
         </a>
       </li>
@@ -27,7 +23,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logoutUser }) => {
   const guestLinks = (
     <ul>
       <li>
-     
+    
       </li>
       <li>
         <Link to="/register">Register</Link>
@@ -39,11 +35,11 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logoutUser }) => {
   );
 
   return (
-    <nav className="navbar bg-dark">
+    <nav className="navbar">
       <ul class="a">
         <li class="a">
         <Link to="/">
-          Imovies
+        <img className="logo-img" src="/images/logo_small.png" alt=""/>
         </Link>
         </li>
         <li>

@@ -61,7 +61,7 @@ return (
 
         <div className="row">
         
-          <div className="col s8 offset-s2">
+          <div className="col s8 offset-s2" className="main-register">
             <Link to="/" className="btn-flat waves-effect c white-text">
               <i className="material-icons left white-text">keyboard_backspace</i> Back to
               home

@@ -20,7 +20,7 @@ router.post("/getLikes", (req, res) => {
         })
 })
 
-// getDislikes - get the dislikes
+// getDislikes - get the dislike
 router.post("/getDislikes", (req, res) => {
 
     let variable = {}

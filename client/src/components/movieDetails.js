@@ -104,7 +104,7 @@ function MovieDetailPage(props) {
 
                 {/* like/dislikes */}
 
-                <div align style={{ display: 'flex', justifyContent: 'left'}}>
+                <div className="likedislike-icon" align style={{ display: 'flex', justifyContent: 'left'}}>
                     <LikeDislikes video postId={movieId} userId={localStorage.getItem('userId')} />
                 </div>
 
