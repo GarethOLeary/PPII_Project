@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const users = require("./routes/api/users");
 const favorite = require("./routes/api/favorite");
+
 //Initialize app using express
 const app = express();
 // Bodyparser middleware
@@ -23,6 +24,7 @@ mongoose
   )
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
+
 // Passport middleware
 app.use(passport.initialize());
 // Passport config
@@ -35,6 +37,7 @@ app.use('/api/favorite', favorite);
 app.use('/api/comment', require('./routes/api/comment'));
 // likes routes
 app.use('/api/like', require('./routes/api/like'));
+
 // Port that server will run on 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+
 // Create a Schema to represent the dislikes , defining fields and types as objects of the Schema
 const dislikeSchema = mongoose.Schema({
     userId: {
@@ -18,5 +19,6 @@ const dislikeSchema = mongoose.Schema({
 
 
 const Dislike = mongoose.model('Dislike', dislikeSchema);
+
 //Export the model so we can access it outside of this file
 module.exports = { Dislike }

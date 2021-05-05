@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+
 // Create a Schema to represent the favorites , defining fields and types as objects of the Schema
 const favoriteSchema = mongoose.Schema({
     userFrom: {
@@ -22,5 +23,6 @@ const favoriteSchema = mongoose.Schema({
 }, { timestamps: true })
 
 const Favorite = mongoose.model('Favorite', favoriteSchema);
+
 //Export the model so we can access it outside of this file
 module.exports = { Favorite }

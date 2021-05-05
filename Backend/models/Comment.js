@@ -21,5 +21,6 @@ const commentSchema = mongoose.Schema({
 }, { timestamps: true })
 
 const Comment = mongoose.model('Comment', commentSchema);
+
 //Export the model so we can access it outside of this file
 module.exports = { Comment }
