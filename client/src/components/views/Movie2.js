@@ -2,13 +2,14 @@ import React from 'react';
 import './movie2.css';
 const IMG_API = "http://image.tmdb.org/t/p/w1280"
 
-
+// This component shows the details of a movie
 
 const Movie2 = (props) => {
     const FavouriteComponent = props.favouriteComponent;
 
     return (
 
+        // diplay poster, movie title, overview, run time, revenue, release date and the rating on IMDB
         <div className="main">
             <div className="details">
                 <div className="movie-img">

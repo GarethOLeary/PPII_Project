@@ -1,24 +1,21 @@
 import React, { useState } from 'react'
-import {  Input } from 'antd';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import './comments.css';
 import DisplayComment from './DisplayComment';
 
-const { TextArea } = Input;
-
 function Comments(props) {
 
-    //const auth = useSelector(state => state.auth)
     const user = useSelector(state => state.auth)
-
     //state
     const [Comment, setComment] = useState("")
 
+    // onChange
     const handleChange = (e) => {
         setComment(e.currentTarget.value)
     }
 
+    // onSubmit
     const onSubmit = (e) => {
         e.preventDefault();
 
@@ -27,6 +24,7 @@ function Comments(props) {
         //    return alert('Please Log in first');
         //}
 
+        // variables for comment
         const variables = {
             content: Comment,
             writer: user.user.userId,
@@ -34,10 +32,14 @@ function Comments(props) {
         }
         console.log(variables)
 
+        // post on /api/comment/saveComment
         axios.post('/api/comment/saveComment', variables)
             .then(response => {
+                // when successful
                 if (response.data.success) {
+                    // set the comment - empty string
                     setComment("")
+                    // update the save data - new comment that gets saved to the mongodb
                     props.refreshFunction(response.data.result)
                 } else {
                     setComment("")
@@ -47,21 +49,22 @@ function Comments(props) {
 
     return (
         <div>
-            <div className="text">Share your opinions about {props.movieTitle}</div>
+            {/* Display the movie Title */}
+            <div className="text">Share your opinions on {props.movieTitle}</div>
             <br />
             <div className="main-content">
                 <br />
-
-
-
                 <div>
                     <br />
+                    {/* Displays the comments on screen */}
                     <p>Replies</p>
                     <hr style={{ background: 'white' }} />
                     <br />
                     {/* Comment Lists */}
                     {console.log(props.CommentLists)}
 
+                    {/* display the comment on Display Comment component that gets called and returns the comments on screen */}
+                    {/* get only one comment */}
                     {props.CommentLists && props.CommentLists.map((comment, index) => (
                         <React.Fragment>
                             <DisplayComment comment={comment} postId={props.postId} refreshFunction={props.refreshFunction} />
@@ -69,10 +72,12 @@ function Comments(props) {
                     ))}
                     <br />
                     <div className="content">
+                        {/* input box for the comments - when enter some text in the input box it will call the onChange of value Comment */}
                         <input className="input" onChange={handleChange} value={Comment} placeholder="write some comments" />
                         <br />
                     </div>
                     <br />
+                    {/* when button is clicked, it will call the onSubmit */}
                     <button className="button" onClick={onSubmit}>Submit</button>
                 </div>
             </div>

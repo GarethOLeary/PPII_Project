@@ -15,6 +15,8 @@ function Favorite(props) {
 
     const [FavoriteNumber, setFavoriteNumber] = useState(0)
     const [Favorited, setFavorited] = useState(false)
+
+    // variables
     const variables = {
         movieId: movieId,
         userFrom: userFrom,
@@ -23,8 +25,10 @@ function Favorite(props) {
         movieRunTime: movieRunTime
     }
 
+    // onClick for favorite add to the favorite
     const onClickFavorite = () => {
 
+        // checks if user is logged in when clicking on addToFavorite
         if (user.user && !user.isAuthenticated) {
             return alert('Please Log in first');
         }
@@ -33,10 +37,11 @@ function Favorite(props) {
             //when we are already subscribed 
             axios.post('/api/favorite/removeFromFavorite', variables)
                 .then(response => {
+                    // when successful
                     if (response.data.success) {
                         setFavoriteNumber(FavoriteNumber - 1)
                         setFavorited(!Favorited)
-                        
+                    // when error - message will be shown on screen as alert 
                     } else {
                         alert('Failed to Remove From Favorite')
                     }
@@ -44,12 +49,14 @@ function Favorite(props) {
 
         } else {
             
-
+            // post on /addToFavorite
             axios.post('/api/favorite/addToFavorite', variables)
                 .then(response => {
+                    // when successful
                     if (response.data.success) {
                         setFavoriteNumber(FavoriteNumber + 1)
                         setFavorited(!Favorited)
+                    // when error - error message displayed as a alert on screen
                     } else {
                         alert('Failed to Add To Favorite')
                     }
@@ -59,19 +66,25 @@ function Favorite(props) {
 
     useEffect(() => {
 
+        // post on /favoriteNumber
         axios.post('/api/favorite/favoriteNumber', variables)
             .then(response => {
+                // when successful
                 if (response.data.success) {
                     setFavoriteNumber(response.data.favoriteNumber)
+                // when error
                 } else {
                     alert('Failed to get Favorite Number')
                 }
             })
 
+        // post on /favorited
         axios.post('/api/favorite/favorited', variables)
             .then(response => {
+                // when successful
                 if (response.data.success) {
                     setFavorited(response.data.favorited)
+                // when error - message will be displayed with the error message
                 } else {
                     alert('Failed to get Favorite Information')
                 }
@@ -79,9 +92,10 @@ function Favorite(props) {
 
     }, [])
 
-
     return (
+        
         <>
+            {/* Button to add to favorite  - sets the number of favorite on the btn */}
             <Button className="button" onClick={onClickFavorite} > {!Favorited ? "Add to Favorite" : "Not Favorite"} {FavoriteNumber}</Button>
         </>
     )

@@ -27,7 +27,7 @@ class UpcomingMovies extends React.Component {
             this.fetchItems(endpoint);
         }
     }
- // searches all movies from the api 
+    // searches all movies from the api 
     searchItems = (searchTerm) => {
         console.log(searchTerm);
 
@@ -37,7 +37,7 @@ class UpcomingMovies extends React.Component {
             loading: true,
             searchTerm: searchTerm
         })
- // searchterm displays all movies if its blank otherwise whatever is entered will be searched 
+        // searchterm displays all movies if its blank otherwise whatever is entered will be searched 
         if (searchTerm === '') {
             endpoint = `${API_URL}movie/upcomingMovies?api_key=${API_KEY}&language=en-US&page=1`;
         } else {
@@ -47,11 +47,11 @@ class UpcomingMovies extends React.Component {
         this.fetchItems(endpoint);
     }
 
-//  method that loads more movies 
+    //  method that loads more movies 
     loadMoreItems = () => {
         let endpoint = '';
         this.setState({ loading: true });
-// will load movies straight away when a key is pressed
+        // will load movies straight away when a key is pressed
         if (this.state.searchTerm === '') {
             endpoint = `${API_URL}movie/upcoming?api_key=${API_KEY}&language=en-US&page=${this.state.currentPage + 1}`;
         } else {
@@ -60,7 +60,7 @@ class UpcomingMovies extends React.Component {
 
         this.fetchItems(endpoint);
     }
-// fetches all movies from api 
+    // fetches all movies from api 
     fetchItems = (endpoint) => {
         fetch(endpoint)
             .then(result => result.json())
@@ -83,7 +83,7 @@ class UpcomingMovies extends React.Component {
     render() {
         return (
             <div className="rmdb-home">
- {/*calls searchpage and ususe callback function */}
+                {/*calls searchpage and ususe callback function */}
                 <div>
 
                     <Search callback={this.searchItems} />
@@ -92,7 +92,7 @@ class UpcomingMovies extends React.Component {
                     <div
                         header={this.state.searchTerm ? 'Search result' : 'upcoming Movies'}
                         loading={this.state.loading} >
-                              {/* Displays the details from the movie page */}
+                        {/* Displays the details from the movie page */}
                         {this.state.movies.map((element, i) => {
                             return <Movie
                                 key={i}
@@ -105,7 +105,7 @@ class UpcomingMovies extends React.Component {
                         })}
                     </div>
                     {this.state.loading ? <Spinner /> : null}
-                      {/*load button to load more movies */}
+                    {/*load button to load more movies */}
                     {(this.state.currentPage <= this.state.totalPages && !this.state.loading) ?
                         <LoadMoreBtn text="Load More" onClick={this.loadMoreItems} /> : null
                     }

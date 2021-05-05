@@ -12,6 +12,7 @@ function LikeDislikes(props) {
     const [DislikeAction, setDislikeAction] = useState(null)
     const [LikeAction, setLikeAction] = useState(null)
 
+    // variable
     let variable = {};
 
     if (props.postId) {
@@ -22,10 +23,11 @@ function LikeDislikes(props) {
 
     useEffect(() => {
 
+        // post on /getLikes 
         Axios.post('/api/like/getLikes', variable)
             .then(response => {
-                console.log('getLikes',response.data)
-
+                console.log('getLikes', response.data)
+                // when successful
                 if (response.data.success) {
                     //How many likes does it have
                     setLikes(response.data.likes.length)
@@ -36,14 +38,17 @@ function LikeDislikes(props) {
                             setLikeAction('liked')
                         }
                     })
+                    // when error - error message displayed
                 } else {
                     alert('Error: Failed to get likes')
                 }
             })
 
+        // post /getDislikes
         Axios.post('/api/like/getDislikes', variable)
             .then(response => {
-                console.log('getDislike',response.data)
+                console.log('getDislike', response.data)
+                // when successful
                 if (response.data.success) {
                     //How many likes does this video or comment have 
                     setDislikes(response.data.dislikes.length)
@@ -54,6 +59,7 @@ function LikeDislikes(props) {
                             setDislikeAction('disliked')
                         }
                     })
+                    // when error
                 } else {
                     alert('Error: Failed to get dislikes')
                 }
@@ -65,11 +71,14 @@ function LikeDislikes(props) {
         if (user.user && !user.isAuthenticated) {
             return alert('Please Log in first');
         }
+
         if (LikeAction === null) {
+            // post on /addLikes
             Axios.post('/api/like/addLike', variable)
                 .then(response => {
+                    // when successful
                     if (response.data.success) {
-
+                        // sets like to 1 
                         setLikes(Likes + 1)
                         setLikeAction('liked')
 
@@ -78,16 +87,21 @@ function LikeDislikes(props) {
                             setDislikeAction(null)
                             setDislikes(Dislikes - 1)
                         }
+                        // when error
                     } else {
                         alert('Error: Failed to increase the like')
                     }
                 })
         } else {
+            // post on /unLike
             Axios.post('/api/like/unLike', variable)
                 .then(response => {
+                    // when successful
                     if (response.data.success) {
+                        // sets the like to -1 
                         setLikes(Likes - 1)
                         setLikeAction(null)
+                        // when error - error message displayed 
                     } else {
                         alert('Error: Failed to decrease the like')
                     }
@@ -97,19 +111,24 @@ function LikeDislikes(props) {
 
     const onDisLike = () => {
 
+        // checks if user is logged in 
         if (user.user && !user.isAuthenticated) {
+            // if not a alert will be displayed
             return alert('Please Log in first');
         }
 
         if (DislikeAction !== null) {
 
+            // post on /unDisLike
             Axios.post('/api/like/unDisLike', variable)
                 .then(response => {
+                    // when successful
                     if (response.data.success) {
-
+                        // sets the dislike to -1, if there is a 1 Dislike
+                        // it will un click it and the dislike will be back to 0 
                         setDislikes(Dislikes - 1)
                         setDislikeAction(null)
-
+                        // when error - error message displayed as alert 
                     } else {
                         alert('Error: Failed to decrease dislike')
                     }
@@ -117,18 +136,21 @@ function LikeDislikes(props) {
 
         } else {
 
+            // post on /addDisLike
             Axios.post('/api/like/addDisLike', variable)
                 .then(response => {
+                    // when successful
                     if (response.data.success) {
-
+                        // sets the dislike to 1 
                         setDislikes(Dislikes + 1)
                         setDislikeAction('disliked')
 
                         //If dislike button is already clicked
-                        if(LikeAction !== null ) {
+                        if (LikeAction !== null) {
                             setLikeAction(null)
                             setLikes(Likes - 1)
                         }
+                        // when error 
                     } else {
                         alert('Error: Failed to increase dislike')
                     }
@@ -138,18 +160,21 @@ function LikeDislikes(props) {
 
     return (
         <React.Fragment>
+
+            {/* Display like and dislike on screen under movie */}
+
             <span key="comment-basic-like">
-                    <LikeOutlined 
-                        type="like"
-                        onClick={onLike} />
+                <LikeOutlined
+                    type="like"
+                    onClick={onLike} />
                 <span style={{ paddingLeft: '8px', cursor: 'auto' }}>{Likes}</span>
             </span>&nbsp;&nbsp;&nbsp;&nbsp;
             <span key="comment-basic-dislike">
-                    <DislikeOutlined
-                        type="dislike"
-                        onClick={onDisLike}
-                    />
-                <span style={{paddingLeft: '8px', cursor: 'auto' }}>{Dislikes}</span>
+                <DislikeOutlined
+                    type="dislike"
+                    onClick={onDisLike}
+                />
+                <span style={{ paddingLeft: '8px', cursor: 'auto' }}>{Dislikes}</span>
             </span>
         </React.Fragment>
     )

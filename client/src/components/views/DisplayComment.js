@@ -1,22 +1,26 @@
 import React from 'react'
-import { Comment, Input } from 'antd';
-const { TextArea } = Input;
+// import Comment 
+import { Comment } from 'antd';
+
+// This component is used to display the comments 
 
 function DisplayComment(props) {
 
+    // when clicked - a line will break each comment 
     const actionOnClick = [
-        <span onClick><hr style={{background: 'grey'}}/></span>
+        <span onClick><hr style={{ background: 'grey' }} /></span>
     ]
 
     return (
         <div>
-
-           <Comment actions={actionOnClick}
-            content={
-                <p>
-                    {props.comment.content}
-                </p>
-            }
+            {/* actions for displaying the content of the comment */}
+            <Comment actions={actionOnClick}
+                content={
+                    <p>
+                        {/* content of the comment */}
+                        {props.comment.content}
+                    </p>
+                }
             ></Comment>
         </div>
     )

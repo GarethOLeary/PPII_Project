@@ -1,7 +1,6 @@
 import Movie2 from '../views/Movie2'
 import Comments from '../views/Comments';
 import React, { useEffect, useState } from 'react'
-import { List, Avatar, Row, Col, Button } from 'antd';
 import LikeDislikes from '../views/LikeDislike';
 import axios from 'axios';
 import Favorite from '../views/Favorite';
@@ -17,7 +16,9 @@ function MovieDetailPage(props) {
     // so we can get specific movie details
     const movieId = props.match.params.movieId
     const [Movie, setMovie] = useState([])
+    // state for commentList 
     const [CommentLists, setCommentLists] = useState([])
+    // for loading movies
     const [LoadingForMovie, setLoadingForMovie] = useState(true)
 
     //variables
@@ -51,6 +52,7 @@ function MovieDetailPage(props) {
             .then(result => result.json())
             .then(result => {
                 console.log(result)
+                // set movie 
                 setMovie(result)
                 setLoadingForMovie(false)
             })
@@ -58,8 +60,9 @@ function MovieDetailPage(props) {
             )
     }
 
-    // update the comment
+    // update new comment 
     const updateComment = (newComment) => {
+        // concat to add it into the list  
         setCommentLists(CommentLists.concat(newComment))
     }
 
@@ -94,7 +97,6 @@ function MovieDetailPage(props) {
 
                 {/* comments */}
                 <Comments movieTitle={Movie.title} CommentLists={CommentLists} postId={movieId} refreshFunction={updateComment} />
-
             </div>
         </div>
     )
