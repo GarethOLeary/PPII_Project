@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
-import Home from './components/home';
+import Home from './components/MoviePages/home';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Register from "./components/Register";
-import Login from "./components/Login";
+import Register from "./components/Auth/Register";
+import Login from "./components/Auth/Login";
 import { Provider } from "react-redux";
 import store from "./store";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
-import UpcomingMovies from './components/upcomingMovies';
-import TopRatedMovies from './components/topRatedMovies';
-import PopularMovies from './components/popularMovies';
-import MovieDetails from './components/movieDetails';
-import Navbar from './components/Navbar'
-//import { Navbar, Nav } from 'react-bootstrap';
-import { NavLink, Link } from 'react-router-dom'
-import FavoritePage from './components/FavoritePage';
+import UpcomingMovies from './components/MoviePages/upcomingMovies';
+import TopRatedMovies from './components/MoviePages/topRatedMovies';
+import PopularMovies from './components/MoviePages/popularMovies';
+import MovieDetails from './components/MoviePages/movieDetails';
+import Navbar from './components/views/Navbar'
+import FavoritePage from './components/views/FavoritePage';
 
 
 // Check for token to keep user logged in

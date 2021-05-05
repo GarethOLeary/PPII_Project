@@ -1,4 +1,4 @@
-
+// Import dependencies and action definitions from types.js
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
@@ -6,18 +6,18 @@ import {
   GET_ERRORS,
   SET_CURRENT_USER,
   USER_LOADING
-  
+
 } from "./types";
-
-
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
+  //Use axios to make HTTPRequests within certain action
   axios
     .post("/api/users/register", userData)
-    .then(res => 
-      history.push("/login") ) 
-      // re-direct to login on successful register
+    .then(res =>
+      history.push("/login"))
+    // re-direct to login on successful register
+
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -26,34 +26,28 @@ export const registerUser = (userData, history) => dispatch => {
     );
 };
 
-
 // Login - get user token
 export const loginUser = userData => dispatch => {
+  // Use axios to make HTTPRequests within certain action
   axios
     .post("/api/users/login", userData)
     .then(res => {
-      
-     
+
       // Save to localStorage
-// Set token to localStorage
+      // Set token to localStorage
       const { token } = res.data;
-      
-      
       localStorage.setItem("jwtToken", token);
-      
-      
-     localStorage.getItem("userId");
+      localStorage.getItem("userId");
       localStorage.setItem('userId', res.data.message._id);
-     
-    
       // Set token to Auth header
       setAuthToken(token);
       // Decode token to get user data
       const decoded = jwt_decode(token);
       // Set current user
       dispatch(setCurrentUser(decoded));
-      
+
     })
+
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
